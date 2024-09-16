@@ -8,6 +8,8 @@ switchport access vlan 15
 int fa0/4
 switchport mode access
 switchport access vlan 15
+vlan 25
+int vlan 25
 
 -- Switch Tata Usaha
 
@@ -46,6 +48,8 @@ switchport mode access
 switchport access vlan 35
 int fa0/1
 switchport mode trunk
+vlan 25
+vlan 15
 
 -- Router Gedung Fasilkom
 int fa0/0
