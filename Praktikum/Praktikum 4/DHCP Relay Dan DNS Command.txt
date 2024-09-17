@@ -22,6 +22,7 @@ def 10.10.10.1
 net 10.10.10.0 255.255.255.0
 dns 30.30.30.2
 
+-- (WARNING-Bukan Mengarah ke DHCP Relay)
 ip dhcp pool vlan20
 def 20.20.20.1
 net 20.20.20.0 255.255.255.0
