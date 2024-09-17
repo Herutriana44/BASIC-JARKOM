@@ -1,0 +1,48 @@
+-- Router
+
+int gi0/1
+ip add 30.30.30.1 255.255.255.0
+no sh
+
+int gi0/0
+no sh
+int gi0/0.10
+encapsulation dot1Q 10
+ip add 10.10.10.1 255.255.255.0
+ex
+int gi0/0
+no sh
+int gi0/0.20
+encapsulation dot1Q 20
+ip add 20.20.20.1 255.255.255.0
+ex
+
+ip dhcp pool vlan10
+def 10.10.10.1
+net 10.10.10.0 255.255.255.0
+dns 30.30.30.2
+
+ip dhcp pool vlan20
+def 20.20.20.1
+net 20.20.20.0 255.255.255.0
+dns 30.30.30.2
+
+-- Switch
+int fa0/3
+sw mo acc
+sw acc vlan 10
+vlan 10
+name Kantor
+vlan 20
+name Meeting
+int fa0/1
+sw mo acc
+sw acc vlan 20
+int fa0/2
+sw mo trunk
+
+-- Konfigurasi DHCP Relay
+-- Router
+
+int gi0/1 
+ip helper-address 30.30.30.2
