@@ -45,5 +45,5 @@ sw mo trunk
 -- Konfigurasi DHCP Relay
 -- Router
 
-int gi0/1 
+int gi0/0.20
 ip helper-address 30.30.30.2
