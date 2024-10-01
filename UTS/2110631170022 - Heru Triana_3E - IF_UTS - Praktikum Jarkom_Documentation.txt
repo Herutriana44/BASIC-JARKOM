@@ -118,3 +118,59 @@ int fa0/0.50
 encapsulation dot1Q 50
 ip add 50.50.50.1 255.255.255.224
 ip helper-address 172.16.10.2
+
+
+OSPF
+
+Router Lab Lanjut 1
+int se0/3/0
+ip add 15.15.15.1 255.255.255.252
+no sh
+ex
+
+router ospf 1
+network 15.15.15.0 255.255.255.252 area 0
+network 10.10.10.0 255.255.255.240 area 0
+network 20.20.20.0 255.255.255.240 area 0
+
+Router Lab Dasar 1
+int se0/3/0
+ip add 15.15.15.2 255.255.255.252
+no sh
+ex
+int se0/3/1
+ip add 25.25.25.1 255.255.255.252
+no sh
+ex
+
+router ospf 1
+network 15.15.15.0 255.255.255.252 area 0
+network 30.30.30.0 255.255.255.224 area 0
+network 40.40.40.0 255.255.255.224 area 0
+network 25.25.25.0 255.255.255.252 area 0
+
+Router Lab Dasar 2
+int se0/3/1
+ip add 25.25.25.2 255.255.255.252
+no sh
+ex
+int se0/3/0
+ip add 35.35.35.1 255.255.255.252
+no sh
+ex
+
+router ospf 1
+network 35.35.35.0 255.255.255.252 area 0
+network 25.25.25.0 255.255.255.252 area 0
+network 192.168.20.0 255.255.255.192 area 0
+
+
+Router Tata Usaha Fasilkom
+int se0/3/0
+ip add 35.35.35.2 255.255.255.252
+no sh
+ex
+
+router ospf 1
+network 35.35.35.0 255.255.255.252 area 0
+network 192.168.30.0 255.255.255.128 area 0
