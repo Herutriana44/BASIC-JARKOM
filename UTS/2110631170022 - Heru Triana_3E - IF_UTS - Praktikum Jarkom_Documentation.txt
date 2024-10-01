@@ -1,0 +1,120 @@
+Router Ruang Lab Lanjut 1 
+Gig0/0 -> Ruang Server (192.168.10.0/29)
+Se0/3/0 -> Router Lab Dasar(15.15.15.0/30)
+ 
+Gig0/1 ->
+Router
+
+int gi0/1
+no sh
+int gi0/1.10
+encapsulation dot1Q 10
+ip add 10.10.10.1 255.255.255.240
+ex
+int gi0/1
+no sh
+int gi0/1.20
+encapsulation dot1Q 20
+ip add 20.20.20.1 255.255.255.240
+ex
+ip dhcp pool vlan10
+def 10.10.10.1
+net 10.10.10.0 255.255.255.240
+dns 192.168.10.2
+ip dhcp pool vlan20
+def 20.20.20.1
+net 20.20.20.0 255.255.255.240
+dns 192.168.10.2
+
+
+Switch Ruang Lab Lanjut 1 (DHCP Router)
+int fa0/1
+VLAN 10 (10.10.10.0/28)
+
+int fa0/11
+VLAN 20 (20.20.20.0/28)
+
+
+command :
+vlan 10
+vlan 20
+int fa0/1
+sw mo acc
+sw acc vlan 10
+int fa0/11
+sw mo acc
+sw acc vlan 20
+int gi0/1
+sw mo trunk
+
+Router Ruang Lab Dasar 1
+Gig0/1 ->
+Router
+
+int gi0/1
+no sh
+int gi0/1.30
+encapsulation dot1Q 30
+ip add 30.30.30.1 255.255.255.224
+ex
+int gi0/1
+no sh
+int gi0/1.40
+encapsulation dot1Q 40
+ip add 40.40.40.1 255.255.255.224
+ex
+ip dhcp pool vlan30
+def 30.30.30.1
+net 30.30.30.0 255.255.255.224
+dns 192.168.10.2
+ip dhcp pool vlan40
+def 40.40.40.1
+net 40.40.40.0 255.255.255.224
+dns 192.168.10.2
+
+
+Switch Ruang Lab Lanjut 1 (DHCP Router)
+command :
+vlan 30
+vlan 40
+int fa0/1
+sw mo acc
+sw acc vlan 40
+int fa0/11
+sw mo acc
+sw acc vlan 30
+int gi0/1
+sw mo trunk
+Router Ruang Lab Dasar 2
+
+Router Ruang Tata Usaha Fasilkom
+
+
+Router Ruang Gedung Fisip
+
+
+Switch TU Fisip
+vlan 50
+int fa0/3
+sw mo acc
+sw acc vlan 50
+int fa0/4
+sw mo acc
+sw acc vlan 50
+int fa0/5
+sw mo acc
+sw acc vlan 50
+int fa0/2
+sw mo acc
+sw acc vlan 50
+int fa0/1
+sw mo trunk
+ 
+CMD Router Gedung Fisip
+int fa0/0
+ip add 172.16.126.1 255.255.255.192
+no sh
+int fa0/0.50
+encapsulation dot1Q 50
+ip add 50.50.50.1 255.255.255.224
+ip helper-address 172.16.10.2
